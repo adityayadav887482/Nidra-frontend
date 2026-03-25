@@ -23,7 +23,7 @@ const fetchAllTrafficData = async () => {
       const trafficData = response.data;
       console.log(trafficData.data)
     // setAlltraficData(Array.isArray(response.data) ? response.data : []);
-    setAlltraficData(prev => [...prev, ...trafficData.data]);
+    setAlltraficData(trafficData.data);
 
     } catch (error) {
       console.log(error);
@@ -40,7 +40,7 @@ const fetchAllTrafficData = async () => {
       const eventData = response.data;
       console.log(eventData.data)
     // setAlltraficData(Array.isArray(response.data) ? response.data : []);
-    setEventData(prev => [...prev, ...eventData.data]);
+    setEventData(eventData.data);
     
     } catch (error) {
       console.log(error);
