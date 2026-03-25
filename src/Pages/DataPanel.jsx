@@ -45,7 +45,7 @@ export default function DataPanel() {
 
       const url = isBlocked
         ? "https://nidra.onrender.com/api/blocked-ips/db"
-        : "https://nidra.onrender.com/api/blocked-ips/db";
+        : "https://nidra.onrender.com/api/blocked-ips/db/";
       if(isBlocked){
       await axios.post(url, {
         ip: itmDataPannel.ip_address,
