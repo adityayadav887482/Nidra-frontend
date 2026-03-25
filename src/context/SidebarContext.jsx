@@ -19,7 +19,7 @@ const SidebarContext = ({children}) => {
 
 const fetchAllTrafficData = async () => {
     try {
-      const response = await axios.get('https://nidra.onrender.com/api/traffic?start=0&limit=50');
+      const response = await axios.get('https://nidra.onrender.com/api/traffic/db');
       const trafficData = response.data;
       console.log(trafficData.data)
     // setAlltraficData(Array.isArray(response.data) ? response.data : []);
