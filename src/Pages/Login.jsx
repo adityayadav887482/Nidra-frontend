@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import { FaArrowLeft } from "react-icons/fa";
 import { AuthDataContext } from '../context/AuthContext';
 import Nidra from '../assets/Nidra.png'
@@ -9,6 +9,13 @@ const Login = () => {
   const [password, setpassword] = useState("")
   
   const {userData, setUserData, login} = useContext(AuthDataContext)
+
+  useEffect(() => {
+    if(localStorage.getItem("userData")){
+    setUserData(JSON.parse(localStorage.getItem("userData")) || null);
+    }
+  }, [userData])
+  
 
   const onSubmitHandler = (event) => {
     event.preventDefault();

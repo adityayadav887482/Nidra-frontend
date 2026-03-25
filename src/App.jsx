@@ -23,7 +23,7 @@ function App() {
   //   email: "aditya828326@gmail.com",
   //   password: "aditya@123"
   // }
-
+    
   return (
    <>
       <div className="flex min-h-screen max-h-screen relative">
@@ -47,9 +47,9 @@ function App() {
 
              {/* { dataPanel ? <ScrollableTable /> : <DataPanel /> } */}
              <Routes>
+               {/* <Route path='/signup' element = {<SignUp />} /> */}
               <Route path='/' element={userData ? <ScrollableTable /> : <Navigate to="/login" />} />
-               <Route path='/signup' element = {<SignUp />} />
-               <Route path='/login' element = {<Login />} />
+               <Route path='/login' element = {userData? <Navigate to="/" /> : <Login />} />
               <Route path='/events' element={userData ? <Events /> : <Navigate to="/login" /> } />
               <Route path='/datapanel' element={userData ? <DataPanel /> : <Navigate to="/login" />} />
               <Route path='/blockedip' element={userData ? <BlockedIp /> : <Navigate to="/login" />} />

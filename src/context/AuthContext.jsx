@@ -5,7 +5,7 @@ export const AuthDataContext = createContext();
 
 const AuthContext = ({children}) => {
 
-    const [userData, setUserData] = useState({})
+    const [userData, setUserData] = useState(JSON.parse(localStorage.getItem("userData")) || null);
     const navigate = useNavigate();
     const login = async (state, credentials) => {
         try {
@@ -13,6 +13,7 @@ const AuthContext = ({children}) => {
             // console.log(data)
             if(credentials.email == "aditya828326@gmail.com" && credentials.password == "aditya@123"){           
             setUserData(credentials)
+            localStorage.setItem("userData", JSON.stringify(credentials))
             toast("Logged in successfully")
             navigate("/")
             } else {
@@ -26,14 +27,17 @@ const AuthContext = ({children}) => {
 
     const logout = () => {
           setUserData(null)
-          toast("Logout Successfully")
-          navigate("/login")
+            localStorage.removeItem("userData")
+            navigate("/login")
+            toast("Logout Successfully")
 
     }
-
+  
     useEffect(() => {
-      setUserData(null)
-      navigate("/")
+        if(localStorage.getItem("userData")){
+      setUserData(JSON.parse(localStorage.getItem("userData")) || null);
+      navigate("/");
+        } 
     }, [])
     
 

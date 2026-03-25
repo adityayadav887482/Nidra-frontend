@@ -1,6 +1,7 @@
-import React, { Children, createContext, useState } from 'react'
+import React, { Children, createContext, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { AuthDataContext } from './AuthContext';
 export let sidebarDataContext = createContext();
 const countriesArray = [
   { name: 'United States', code: 'US' },
@@ -16,13 +17,13 @@ const SidebarContext = ({children}) => {
    const [alltraficData, setAlltraficData] = useState([])
    const [eventData, setEventData] = useState([])
    const navigate = useNavigate()
+   const {userData, setUserData} = useContext(AuthDataContext)
 
 const fetchAllTrafficData = async () => {
     try {
       const response = await axios.get('https://nidra.onrender.com/api/traffic/db');
       const trafficData = response.data;
       console.log(trafficData.data)
-    // setAlltraficData(Array.isArray(response.data) ? response.data : []);
     setAlltraficData(trafficData.data);
 
     } catch (error) {
@@ -51,16 +52,16 @@ const fetchAllTrafficData = async () => {
     
    const reqHandler = () => { 
         navigate('/')
-        fetchAllTrafficData()
-    }
-
-     const eventHandler = () => { 
-        fetchEventData()
-        navigate('/events')
-
-    }
-
-    const blockedIPHandler = () => { 
+       fetchAllTrafficData()
+      }
+      
+      const eventHandler = () => { 
+       fetchEventData()
+       navigate('/events')
+       
+      }
+      
+      const blockedIPHandler = () => { 
         navigate('/blockedip')
     }
   
