@@ -36,7 +36,7 @@ export default function DataPanel() {
     };
 
     fetchIpEvents();
-  }, [itmDataPannel, navigate]);
+  }, [navigate]);
 
   // 🔥 Block / Unblock API
   const toggleBlock = async () => {
@@ -155,8 +155,8 @@ export default function DataPanel() {
                     return (
                       <tr
                         key={index}
-                        className="border-b hover:bg-gray-100"
-                      >
+                        className="border-b hover:bg-gray-100 cursor-pointer"
+                    onClick={()=>{setItmDataPannel((prev)=> ({...prev, rule: event.rule, severity: event.severity, path: event.path, method: event.method, country: event.country, user_agent: event.user_agent, description: event.description}))}}  >
                         <td className="p-3">
                           {dateObj.toLocaleTimeString()}
                         </td>
