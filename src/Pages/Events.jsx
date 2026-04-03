@@ -85,13 +85,12 @@ const Events = () => {
                   >
                     <td className="p-3">
                       <span
-                        className={`inline-block w-4 h-4 rounded-full ${
-                          item.severity === "high"
+                        className={`inline-block w-4 h-4 rounded-full ${item.severity === "high"
                             ? "bg-red-600"
                             : item.severity === "low"
-                            ? "bg-green-600"
-                            : "bg-yellow-400"
-                        }`}
+                              ? "bg-green-600"
+                              : "bg-yellow-400"
+                          }`}
                       ></span>
                     </td>
 
@@ -99,7 +98,9 @@ const Events = () => {
 
                     <td className="p-3">
                       {item.timestamp
-                        ? new Date(item.timestamp).toLocaleTimeString()
+                        ? new Date(item.timestamp).toLocaleTimeString("en-GB", {
+                          timeZone: "UTC",
+                        })
                         : "N/A"}
                     </td>
 

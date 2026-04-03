@@ -35,11 +35,11 @@ export default function ScrollableTable() {
     sidebarVal === "All Request" && (
       <div className="flex justify-center items-center bg-gray-100 pr-8 pt-6 pb-6">
         <div className="w-[82%] bg-white shadow-xl rounded-2xl overflow-hidden">
-          
+
           {/* Scroll Container */}
           <div className="max-h-[570px] overflow-y-auto">
             <table className="w-full border-collapse">
-              
+
               {/* Sticky Header */}
               <thead className="bg-gray-200 sticky top-0 z-10">
                 <tr>
@@ -59,16 +59,19 @@ export default function ScrollableTable() {
 
                     <td className="p-3 text-left">
                       {item.timestamp
-                        ? new Date(item.timestamp).toDateString()
+                        ? new Date(item.timestamp).toLocaleDateString("en-GB", {
+                          timeZone: "UTC",
+                        })
                         : "N/A"}
                     </td>
 
                     <td className="p-3 text-left">
                       {item.timestamp
-                        ? new Date(item.timestamp).toLocaleTimeString()
+                        ? new Date(item.timestamp).toLocaleTimeString("en-GB", {
+                          timeZone: "UTC",
+                        })
                         : "N/A"}
                     </td>
-
                     <td className="p-3 text-left">{item.path}</td>
                     <td className="p-3 text-left">{item.country}</td>
                   </tr>
