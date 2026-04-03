@@ -11,6 +11,29 @@ export default function DataPanel() {
   const [loading, setLoading] = useState(false);
   const [blocking, setBlocking] = useState(false);
   const [isBlocked, setIsBlocked] = useState(true);
+  const [blockedIps, setBlockedIps] = useState([]);
+
+     async function fetchBlockedIps() {
+    try {
+      const res = await axios.get(
+        "https://nidra.onrender.com/api/blocked-ips/db"
+      );
+      setBlockedIps(res.data.data || []);
+      console.log(res.data.data || []);
+    } catch (error) {
+      console.error(error);
+    }
+     }
+
+ useEffect(() => {
+   if (itmDataPannel && blockedIps.some((item) => item.ip_address === itmDataPannel.ip_address)) {
+    //console.log("some function is true")
+      setIsBlocked(false);
+    } else {
+      setIsBlocked(true);
+    }
+  }, [itmDataPannel, blockedIps, navigate]);
+
 
   // ✅ Fetch events of selected IP
   useEffect(() => {
@@ -18,7 +41,6 @@ export default function DataPanel() {
       navigate("/events");
       return;
     }
-
     const fetchIpEvents = async () => {
       try {
         setLoading(true);
@@ -36,6 +58,7 @@ export default function DataPanel() {
     };
 
     fetchIpEvents();
+    fetchBlockedIps();
   }, [navigate]);
 
   // 🔥 Block / Unblock API
@@ -174,10 +197,10 @@ export default function DataPanel() {
                         <td className="p-3">
                           <span
                             className={`px-2 py-1 rounded text-white text-xs ${event.severity === "high"
-                                ? "bg-red-600"
+                                ? "bg-[#FF8C00]"
                                 : event.severity === "medium"
-                                  ? "bg-yellow-500"
-                                  : "bg-green-600"
+                                  ? "bg-[#FFD700]"
+                                  : "bg-[#DC143C]"
                               }`}
                           >
                             {event.severity}
