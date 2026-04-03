@@ -47,7 +47,7 @@ export default function ScrollableTable() {
                   <th className="p-3 text-center">Date</th>
                   <th className="p-3 text-center">Time</th>
                   <th className="p-3 text-center">Path</th>
-                  <th className="p-3 text-center">Country</th>
+                  
                 </tr>
               </thead>
 
@@ -73,7 +73,7 @@ export default function ScrollableTable() {
                         : "N/A"}
                     </td>
                     <td className="p-3 text-left">{item.path}</td>
-                    <td className="p-3 text-left">{item.country}</td>
+                  
                   </tr>
                 ))}
               </tbody>
